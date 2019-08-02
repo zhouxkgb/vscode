@@ -1,0 +1,7 @@
+{
+    "success": true,
+    "data": {
+        "title": "目前流行的前端开发框架",
+        "content": "<img src='//upload-images.jianshu.io/upload_images/4770884-f6e9ebeb6ec9b85e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp' alt='' /><p>作为前端开发者，各种框架的层出不穷，促使我们要不断学习才能防止落后，但是我们不可能做到每个框架都有学习的时间，我们只需要掌握流行的，坑少的即可。从以下三个方面了解目前流行的前端开发框架。</p><h4>一.跨多平台开发框架</h4><p>(1).uni-app--开发一次，多端覆盖</p><p>uni-app 是<strong>DCloud</strong>公司使用 Vue.js 开发<strong>跨平台</strong>应用的前端框架，开发者编写一套代码，可编译到iOS、Android、H5、小程序等多个平台。</p><img src='//upload-images.jianshu.io/upload_images/4770884-872668c9e3113d70.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/970/format/webp' alt='' />"
+    }
+}

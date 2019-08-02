@@ -1,6 +1,7 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import { Link } from 'react-router-dom';
 import {
     HeaderWrapper,
     Logo,
@@ -16,9 +17,9 @@ import {
     SearchInfoItem,
     SearchWrapper
 } from './style';
-import { actionCreators} from "./store";
+import { actionCreators } from "./store";
 
-class Header extends Component{
+class Header extends Component {
     getListArea = () => {
         const {
             focus,
@@ -32,28 +33,28 @@ class Header extends Component{
         } = this.props
         const pageList = []
         const newList = list.toJS()
-        if(newList.length){
+        if (newList.length) {
             for (let i = (page - 1) * 10; i < page * 10; i++) {
                 pageList.push(<SearchInfoItem key={newList[i]}>{newList[i]}</SearchInfoItem>)
             }
         }
-        if(focus || mouseIn){
+        if (focus || mouseIn) {
             return (
-            <SearchInfo onMouseEnter={handlerMouseEnter}
-                        onMouseLeave={handlerMounseLeave}>
-                <SearchInfoTitile>热门搜索
-                    <SearchInfoSwitch onClick={()=>{handlerClickChangePage(page,countPage)}}>换一批</SearchInfoSwitch>
-                </SearchInfoTitile>
-                <SearchInfoList>
-                    {pageList}                          
-                </SearchInfoList>
-            </SearchInfo>)
+                <SearchInfo onMouseEnter={handlerMouseEnter}
+                    onMouseLeave={handlerMounseLeave}>
+                    <SearchInfoTitile>热门搜索
+                    <SearchInfoSwitch onClick={() => { handlerClickChangePage(page, countPage) }}>换一批</SearchInfoSwitch>
+                    </SearchInfoTitile>
+                    <SearchInfoList>
+                        {pageList}
+                    </SearchInfoList>
+                </SearchInfo>)
         }
     }
-    render(){
+    render() {
         return (
             <HeaderWrapper>
-                <Logo/>
+                <Link to='/'> <Logo /></Link>
                 <Nav>
                     <NavItem className="left">首页</NavItem>
                     <NavItem className="left">下载App</NavItem>
@@ -62,14 +63,14 @@ class Header extends Component{
                         <span className="iconfont">&#xe636;</span>
                     </NavItem>
                     <SearchWrapper>
-                    <CSSTransition timeout={200} in={this.props.focus} classNames="slide">
-                    <NavSearch className={this.props.focus?'focused':''}
+                        <CSSTransition timeout={200} in={this.props.focus} classNames="slide">
+                            <NavSearch className={this.props.focus ? 'focused' : ''}
                                 onFocus={this.props.handlerInputFocus}
-                                onBlur={this.props.handlerInputBlur}>                        
-                    </NavSearch>
-                    </CSSTransition>
-                    <span className={this.props.focus?'focused iconfont':'iconfont'}>&#xe69d;</span>
-                    {this.getListArea()}
+                                onBlur={this.props.handlerInputBlur}>
+                            </NavSearch>
+                        </CSSTransition>
+                        <span className={this.props.focus ? 'focused iconfont' : 'iconfont'}>&#xe69d;</span>
+                        {this.getListArea()}
                     </SearchWrapper>
                 </Nav>
                 <Addition>
@@ -80,39 +81,39 @@ class Header extends Component{
         )
     }
 
- }
+}
 
 
 
-const mapState2props = (state)=>{
+const mapState2props = (state) => {
     return {
-        focus: state.getIn(['header','focus']),
-        list:state.getIn(['header','list']),
-        page:state.getIn(['header','page']),
-        mouseIn:state.getIn(['header','mouseIn']),
-        countPage:state.getIn(['header','countPage']),
+        focus: state.getIn(['header', 'focus']),
+        list: state.getIn(['header', 'list']),
+        page: state.getIn(['header', 'page']),
+        mouseIn: state.getIn(['header', 'mouseIn']),
+        countPage: state.getIn(['header', 'countPage']),
     }
 }
 
-const mapDispatch2props = (dispatch)=>{
+const mapDispatch2props = (dispatch) => {
     return {
-        handlerInputFocus : () => {
+        handlerInputFocus: () => {
             dispatch(actionCreators.getList())
             dispatch(actionCreators.searchFocus())
         },
-        handlerInputBlur : () => {
+        handlerInputBlur: () => {
             dispatch(actionCreators.searchBlur())
         },
-        handlerMouseEnter:()=>{
+        handlerMouseEnter: () => {
             dispatch(actionCreators.searchInfoMouseIn())
         },
-        handlerMounseLeave:()=>{
+        handlerMounseLeave: () => {
             dispatch(actionCreators.searchInfoMouseOut())
         },
-        handlerClickChangePage: (page,countPage) => {
-            if(page<countPage){
-                dispatch(actionCreators.searchInfoChange(page+1))
-            }else{
+        handlerClickChangePage: (page, countPage) => {
+            if (page < countPage) {
+                dispatch(actionCreators.searchInfoChange(page + 1))
+            } else {
                 dispatch(actionCreators.searchInfoChange(1))
             }
         }

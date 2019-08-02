@@ -4,7 +4,9 @@ const defaultState = fromJS({
     topicList: [],
     articleList: [],
     recommendList: [],
-    writerList: []
+    writerList: [],
+    articlePage: 1,
+    isScroll: false
 })
 export default (state = defaultState, action) => {
     switch (action.type) {
@@ -15,6 +17,13 @@ export default (state = defaultState, action) => {
                 recommendList: fromJS(action.recommendList),
                 writerList: fromJS(action.writerList)
             })
+        case constants.ADD_HOME_LIST:
+            return state.merge({
+                articleList: state.get('articleList').concat(action.articleList),
+                articlePage: action.nextPage
+            })
+        case constants.TOGGLE_SHOW:
+            return state.set('isScroll', action.tag)
         default:
             return state
     }

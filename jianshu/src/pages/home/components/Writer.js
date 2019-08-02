@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { WriterWrapper, WriterTitle, WriterToggle, WriterItem } from '../style';
 import { connect } from 'react-redux';
-class Writer extends Component {
+class Writer extends PureComponent {
     render() {
         const { list } = this.props
         return (
@@ -12,7 +12,7 @@ class Writer extends Component {
                 {
                     list.map((item) => (
                         <WriterItem key={item.get('id')}>
-                            <img className='pic' src={item.get('imgUrl')} />
+                            <img className='pic' alt='' src={item.get('imgUrl')} />
                             <p className='get'>+ 关注</p>
                             <h3 className='author'>{item.get('author')}</h3>
                             <p className='desc'>{item.get('desc')}</p>
